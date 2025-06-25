@@ -4,7 +4,7 @@
 
 ## Overview
 
-The project was initiated by a social entrepreneur who manages a large Instagram page that automatically generates and shares memorial posts using web scraping from sources like [Izkor.gov.il](https://www.izkor.gov.il/). The problem: Instagram does not offer an efficient search feature to locate specific memorial posts by name. 
+The project was initiated by a social entrepreneur who manages a large Instagram page that automatically generates and shares memorial posts using web scraping from sources like [Izkor.gov.il](https://www.izkor.gov.il/). The problem: Instagram does not offer an efficient search feature to locate specific memorial posts by name.
 
 **Lezichram** solves this problem by providing a user-friendly search interface where anyone can search for a fallen soldier by name and be redirected to their Instagram post.
 
@@ -30,6 +30,7 @@ In addition, the app presents background information about the project, its miss
 ### Backend
 
 - **Node.js Script**
+
   - Fetches the latest Instagram posts
   - Processes post data (title, ID, image)
   - Downloads each image and stores it to persistent storage
@@ -61,3 +62,44 @@ This project was built in close collaboration using Zoom, Jira, and Figma. Tasks
 
 [https://lezichram.co.il](https://lezichram.co.il)
 
+## Project Structure (Refactored)
+
+```
+lezichram/
+│
+├── backend/
+│   ├── soldier-service/
+│   ├── ingestion-service/
+│   └── contact-service/
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   ├── ...
+│
+├── docker-compose.yml
+└── README.md
+```
+
+## Backend Microservices
+
+- **soldier-service**: CRUD and search for soldiers/posts (connects to Supabase)
+- **ingestion-service**: Fetches Instagram posts, processes, and updates Supabase
+- **contact-service**: Handles contact form submissions (stores in Supabase)
+
+## Frontend
+
+- React app (original code, now in `frontend/`)
+
+## Running with Docker Compose
+
+1. Copy your Supabase keys to a `.env` file in the root or each service as needed.
+2. Run:
+   ```bash
+   docker-compose up --build
+   ```
+3. Access each service at its respective port (see `docker-compose.yml`).
+
+---
+
+_See each service's README for API details._

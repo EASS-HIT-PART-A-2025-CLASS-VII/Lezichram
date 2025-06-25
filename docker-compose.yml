@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  soldier-service:
+    build: ./backend/soldier-service
+    env_file:
+      - ./backend/.env
+    ports:
+      - "4001:4000"
+    restart: no
+
+  ingestion-service:
+    build: ./backend/ingestion-service
+    env_file:
+      - ./backend/.env
+    ports:
+      - "4002:4000"
+    restart: no
+
+  contact-service:
+    build: ./backend/contact-service
+    env_file:
+      - ./backend/.env
+    ports:
+      - "4003:4000"
+    restart: no
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:80"
+    restart: no

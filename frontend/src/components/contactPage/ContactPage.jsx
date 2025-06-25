@@ -84,24 +84,26 @@ function ContactPage() {
       setIsSubmitting(false);
       return;
     }
+
     try {
-      await emailjs.send(
-        "service_iwsqsjm",
-        "template_upjj7k6",
-        {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
+      const response = await fetch("http://localhost:4003/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        "lcKCeDjabcrmW16hM"
-      );
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const { error } = await response.json();
+        throw new Error(error || "Request failed");
+      }
+
       setSuccess(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
       setErrors({ name: "", email: "", phone: "", message: "" });
     } catch (err) {
       console.error(err);
-      setSuccess(true);
       setError("שליחת ההודעה נכשלה.");
     } finally {
       setIsSubmitting(false);

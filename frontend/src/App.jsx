@@ -15,18 +15,12 @@ function App() {
 
   useEffect(() => {
     async function loadSoldiers() {
-      const { data, error } = await supabase
-        .from("posts")
-        .select(
-          "name, caption, img_url, permalink, like_count, comments_count"
-        );
-      if (error) {
-        console.error("Error loading soldiers:", error);
-        return;
-      }
+      const res = await fetch("http://localhost:4001/soldiers");
+      const data = await res.json();
+      setSoldiersData(data);
       const normalized = data.map((row) => ({
         name: row.name,
-        imgSrc: row.img_url,
+        imgSrc: row.imgSrc,
         permalink: row.permalink,
         likeCount: row.like_count,
         commentsCount: row.comments_count,
