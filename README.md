@@ -8,6 +8,10 @@
 
 👉 [https://lezichram.co.il](https://lezichram.co.il)
 
+## Youtube Video
+👉 [Youtube Video Link:](https://youtu.be/82b8UXn8CK4)
+
+
 ---
 
 ## 📖 Overview
